@@ -3,7 +3,8 @@ import sys, select
 class Player:
     X_LIM = 60 
     Y_LIM = 20
-    shape = u'\U0001F344' #@
+    CHARACTER = u'\U0001F344' #'@'    
+    BACKGROUND = u'\U0001F3FB' #'.'  
     COMMANDS = {
         'w': (0, -1), #up
         's': (0, 1), #down
@@ -36,9 +37,9 @@ class Player:
             return False
 
     def render(self):
-        for _ in range(self.y): print('.'* self.X_LIM)  #rows above player
-        print('{}{}{}'.format('.' * (self.x - 1), self.shape ,'.' * (self.X_LIM - 2 - self.x))) #row player is on
-        for _ in range(self.Y_LIM - self.y): print('.'* self.X_LIM) #rows below player
+        for _ in range(self.y): print(self.BACKGROUND* self.X_LIM)  #rows above player
+        print('{}{}{}'.format(self.BACKGROUND * (self.x - 1), self.CHARACTER ,self.BACKGROUND * (self.X_LIM - 2 - self.x))) #row player is on
+        for _ in range(self.Y_LIM - self.y): print(self.BACKGROUND * self.X_LIM) #rows below player
 
 class Game(object):
     def __init__(self):
